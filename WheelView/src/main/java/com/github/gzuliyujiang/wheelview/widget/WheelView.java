@@ -1175,17 +1175,24 @@ public class WheelView extends View implements Runnable {
      * 计算点击需要上下滚动的条目数
      */
     private int getMoveCount(float clickY) {
-        float centerPoint = itemHeight * visibleItemCount / 2f;
-        float distanceToCenter = clickY - centerPoint;
+        int centerLineTopY = itemHeight * (visibleItemCount / 2);
+        int centerLineBottomY = itemHeight * (visibleItemCount / 2 + 1);
+
         int count = 0;
-        if (Math.abs(distanceToCenter) > halfItemHeight) {
-            count = (int) (distanceToCenter / itemHeight) - 1;
-            if (Math.abs(distanceToCenter) % halfItemHeight > 0) {
+        if (clickY >= 0 && clickY < centerLineTopY) {
+            int distance = (int) (centerLineTopY - clickY);
+            count = distance / itemHeight;
+            if (distance % itemHeight > 0) {
+                count = -count - 1;
+            }
+            return count;
+        } else if (clickY >= 0 && clickY > centerLineBottomY) {
+            int distance = (int) (clickY - centerLineBottomY);
+            count = distance / itemHeight;
+            if (distance % itemHeight > 0) {
                 count++;
             }
-        }
-        if (count > 0 && distanceToCenter < 0) {
-            return -count;
+            return count;
         }
         return count;
     }
