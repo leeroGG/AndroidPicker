@@ -32,6 +32,7 @@
         <item name="wheel_indicatorEnabled">true</item>
         <item name="wheel_indicatorColor">#FFDEDEDE</item>
         <item name="wheel_indicatorSize">1dp</item>
+        <item name="wheel_selectByClickEnable">false</item>
     </style>
 
 </resources>

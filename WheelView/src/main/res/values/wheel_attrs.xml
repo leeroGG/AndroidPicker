@@ -48,6 +48,7 @@
     <attr name="wheel_curvedEnabled" format="boolean|reference" />
     <attr name="wheel_curvedMaxAngle" format="integer|reference" />
     <attr name="wheel_curvedIndicatorSpace" format="dimension|reference" />
+    <attr name="wheel_selectByClickEnable" format="boolean|reference" />
 
     <declare-styleable name="WheelView">
         <attr name="wheel_visibleItemCount" />
@@ -72,6 +73,7 @@
         <attr name="wheel_curvedEnabled" />
         <attr name="wheel_curvedMaxAngle" />
         <attr name="wheel_curvedIndicatorSpace" />
+        <attr name="wheel_selectByClickEnable" />
     </declare-styleable>
 
 </resources>

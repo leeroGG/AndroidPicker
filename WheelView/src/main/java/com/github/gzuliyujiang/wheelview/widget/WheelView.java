@@ -126,6 +126,7 @@ public class WheelView extends View implements Runnable {
     private final int touchSlop;
     private boolean isClick;
     private boolean isForceFinishScroll;
+    private boolean selectByClickEnable;
 
     public WheelView(Context context) {
         this(context, null);
@@ -1108,7 +1109,7 @@ public class WheelView extends View implements Runnable {
             scroller.setFinalY(scroller.getFinalY() + endPoint);
         } else {
             int endPoint = computeDistanceToEndPoint(scrollOffsetYCoordinate % itemHeight);
-            if (endPoint == 0) {
+            if (endPoint == 0 && selectByClickEnable) {
                 int moveCount = getMoveCount(event.getY());
                 if (moveCount < 0) {
                     scrollTo(Math.max(0, currentPosition + moveCount));
@@ -1179,7 +1180,7 @@ public class WheelView extends View implements Runnable {
         int count = 0;
         if (Math.abs(distanceToCenter) > halfItemHeight) {
             count = (int) (distanceToCenter / itemHeight) - 1;
-            if (distanceToCenter % halfItemHeight > 0) {
+            if (Math.abs(distanceToCenter) % halfItemHeight > 0) {
                 count++;
             }
         }
